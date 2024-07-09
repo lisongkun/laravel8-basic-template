@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.5",
         "mews/captcha": "^3.3",
         "opcodesio/log-viewer": "^3.10",
-        "paquettg/php-html-parser": "^2.2"
+        "paquettg/php-html-parser": "^2.2",
+        "tymon/jwt-auth": "^1.0@dev"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

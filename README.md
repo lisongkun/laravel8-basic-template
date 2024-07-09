@@ -56,6 +56,7 @@ composer dump-autoload
 ## 运行
 
 ```bash
+php artisan jwt:secret # 生成JWT密钥
 php bin/laravels start
 
 ```
