@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "hhxsv5/laravel-s": "~3.7.0",
         "jiannei/laravel-enum": "^3.0",
         "jiannei/laravel-response": "^4.0",
         "laravel/framework": "^8.75",
