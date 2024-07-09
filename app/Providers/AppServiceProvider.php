@@ -32,5 +32,17 @@ class AppServiceProvider extends ServiceProvider
             // return true to allow viewing the Log Viewer.
             return true;
         });
+
+        // 开发环境打印 SQL
+        if (config('app.env') === 'local') {
+            \DB::listen(function ($query) {
+                $sql = $query->sql;
+                $bindings = $query->bindings;
+                $time = $query->time;
+                $sql = str_replace('?', "'%s'", $sql);
+                $fullSql = vsprintf($sql, $bindings);
+                \Log::debug('SQL', ['sql' => $fullSql, 'time' => $time]);
+            });
+        }
     }
 }
