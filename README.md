@@ -4,9 +4,12 @@
 
 ## 内置路由
 
-| 路由名称  | 路由地址  | 说明 |
-|-------|-------|----|
-| index | index | 首页 |
+| 路由名称       | 路由地址        | 说明    |
+|------------|-------------|-------|
+| index      | /           | 首页    |
+| horizon    | /horizon    | Job监控 |
+| telescope  | /telescope  | 请求监控  |  
+| log-viewer | /log-viewer | 日志监控  |
 
 ## Development/Deploy Step
 
