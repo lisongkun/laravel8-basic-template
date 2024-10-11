@@ -2,6 +2,21 @@
 
 # Laravel8-basic-template
 
+## 内置路由
+
+| 路由名称  | 路由地址  | 说明 |
+|-------|-------|----|
+| index | index | 首页 |
+
+## Development/Deploy Step
+
+1. 拷贝`.env.example`到`.env`
+2. 生成key : `php artisan key:generate`
+3. 安装composer依赖: `composer install`
+4. 添加分钟级的`php artisan schedule:run`定时任务
+5. 生成JWT密钥: `php artisan jwt:secret`
+6. 如需Laravels则另外运行:`php bin/laravels start`
+
 ## 授权篇
 
 项目内置了两种授权方案
@@ -53,10 +68,4 @@ composer dump-autoload
 
 ![src](doc/img.png)
 
-## 运行
 
-```bash
-php artisan jwt:secret # 生成JWT密钥
-php bin/laravels start
-
-```

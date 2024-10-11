@@ -16,6 +16,7 @@
         "jiannei/laravel-response": "^4.0",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
+        "laravel/telescope": "^5.2",
         "laravel/tinker": "^2.5",
         "mews/captcha": "^3.3",
         "opcodesio/log-viewer": "^3.10",

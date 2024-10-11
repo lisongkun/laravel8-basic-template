@@ -40,6 +40,9 @@ class AppServiceProvider extends ServiceProvider
                 $bindings = $query->bindings;
                 $time = $query->time;
                 $sql = str_replace('?', "'%s'", $sql);
+                // 对%Y和%m进行转义
+                $sql = str_replace('%Y', '%%Y', $sql);
+                $sql = str_replace('%m', '%%m', $sql);
                 $fullSql = vsprintf($sql, $bindings);
                 \Log::debug('SQL', ['sql' => $fullSql, 'time' => $time]);
             });
