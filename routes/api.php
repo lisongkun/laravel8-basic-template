@@ -17,6 +17,15 @@ Route::get('/', function () {
     return Response::ok();
 });
 
+/**
+ * WebHook相关路由
+ * /api/webhook/*
+ */
+Route::group(['prefix' => 'webhook', 'as' => 'webhook.'], function () {
+    require __DIR__ . '/modules/api/webhook.php';
+});
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
