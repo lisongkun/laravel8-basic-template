@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -20,6 +21,7 @@ return new class extends Migration
     public function up(): void
     {
         $schema = Schema::connection($this->getConnection());
+        $prefix = config('database.connections.mysql.prefix');
 
         $schema->create('telescope_entries', function (Blueprint $table) {
             $table->bigIncrements('sequence');
@@ -37,6 +39,9 @@ return new class extends Migration
             $table->index('created_at');
             $table->index(['type', 'should_display_on_index']);
         });
+        DB::statement("ALTER TABLE `" . $prefix . "telescope_entries` comment 'Telescope数据表'");
+
+
 
         $schema->create('telescope_entries_tags', function (Blueprint $table) {
             $table->uuid('entry_uuid');
@@ -50,10 +55,14 @@ return new class extends Migration
                 ->on('telescope_entries')
                 ->onDelete('cascade');
         });
+        DB::statement("ALTER TABLE `" . $prefix . "telescope_entries_tags` comment 'Telescope数据表'");
+
 
         $schema->create('telescope_monitoring', function (Blueprint $table) {
             $table->string('tag')->primary();
         });
+        DB::statement("ALTER TABLE `" . $prefix . "telescope_monitoring` comment 'Telescope数据表'");
+
     }
 
     /**

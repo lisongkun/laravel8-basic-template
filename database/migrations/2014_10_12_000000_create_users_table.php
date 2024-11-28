@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -13,6 +14,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        $prefix = config('database.connections.mysql.prefix');
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('phone',11)->comment('登录手机号');
@@ -38,6 +40,8 @@ class CreateUsersTable extends Migration
             $table->index('openId');
             $table->index('mnpOpenId');
         });
+        DB::statement("ALTER TABLE `" . $prefix . "users` comment '用户表'");
+
     }
 
     /**

@@ -13,6 +13,8 @@ class CreateFailedJobsTable extends Migration
      */
     public function up()
     {
+        $prefix = config('database.connections.mysql.prefix');
+
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
@@ -22,6 +24,8 @@ class CreateFailedJobsTable extends Migration
             $table->longText('exception');
             $table->timestamp('failed_at')->useCurrent();
         });
+        DB::statement("ALTER TABLE `" . $prefix . "failed_jobs` comment '失败任务表'");
+
     }
 
     /**
