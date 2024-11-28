@@ -36,16 +36,18 @@ return [
     */
 
     'guards' => [
+        // Web Guards
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // API Sanctum Guards
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'sanctum',
             'provider' => 'users'
         ],
         'admin' => [
-            'driver' => 'jwt',
+            'driver' => 'sanctum',
             'provider' => 'adminUsers'
         ]
     ],
@@ -77,11 +79,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class
         ]
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

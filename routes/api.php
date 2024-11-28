@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/', function () {
-    return Response::ok();
-});
 
 /**
  * WebHook相关路由
@@ -28,4 +25,11 @@ Route::group(['prefix' => 'webhook', 'as' => 'webhook.'], function () {
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// 小程序端的Protecting-routes
+Route::middleware('auth:api')->group(function () {
+});
+// 后端的Protecting-routes
+Route::middleware('auth:admin')->group(function () {
 });

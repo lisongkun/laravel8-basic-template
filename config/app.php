@@ -166,7 +166,6 @@ return [
          * Package Service Providers...
          */
         \Mews\Captcha\CaptchaServiceProvider::class,
-        \Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         \Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider::class,
         /*
          * Application Service Providers...
