@@ -167,6 +167,7 @@ return [
          */
         \Mews\Captcha\CaptchaServiceProvider::class,
         \Hhxsv5\LaravelS\Illuminate\LaravelSServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -241,7 +242,8 @@ return [
         /*
          * Package Alias...
          */
-        'Captcha' => Mews\Captcha\Facades\Captcha::class
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

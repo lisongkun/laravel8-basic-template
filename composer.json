@@ -19,10 +19,13 @@
         "laravel/sanctum": "^2.15",
         "laravel/telescope": "^5.2",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.3",
         "opcodesio/log-viewer": "^3.10",
+        "orangehill/iseed": "^3.0",
         "overtrue/laravel-wechat": "7.0",
-        "paquettg/php-html-parser": "^2.2"
+        "paquettg/php-html-parser": "^2.2",
+        "zhuzhichao/ip-location-zh": "^2.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
