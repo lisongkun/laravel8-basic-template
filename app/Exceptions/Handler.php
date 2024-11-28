@@ -53,25 +53,28 @@ class Handler extends ExceptionHandler
         if ($e instanceof ValidationException) {
             $firstErrorMessage = array_values($e->errors())[0][0];
             Response::fail($firstErrorMessage, ResponseCodeEnum::HTTP_BAD_REQUEST);
-        } elseif ($e instanceof UnauthorizedHttpException)
-            Response::fail('您的会话已过期,请重新登陆', ResponseCodeEnum::HTTP_UNAUTHORIZED);
-        else if ($e instanceof HttpResponseException)
-            return parent::render($request, $e);
-        elseif ($e instanceof BusinessException)
-            Response::fail($e->getMessage(), $e->getCode());
-        else {
-            Log::error('系统异常', [
-                'error' => $e,
-                'message' => $e->getMessage(),
-                'request' => $request->all(),
-                'path' => $request->path(),
-                'method' => $request->method(),
-                'ip' => $request->getClientIp(),
-                'user_agent' => $request->header('User-Agent'),
-                'headers' => $request->header(),
-                'full_url' => $request->fullUrl(),
-            ]);
-            Response::fail('系统异常', ResponseCodeEnum::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        if(!config('app.debug')){
+            if ($e instanceof UnauthorizedHttpException)
+                Response::fail('您的会话已过期,请重新登陆', ResponseCodeEnum::HTTP_UNAUTHORIZED);
+            else if ($e instanceof HttpResponseException)
+                return parent::render($request, $e);
+            elseif ($e instanceof BusinessException)
+                Response::fail($e->getMessage(), $e->getCode());
+            else {
+                Log::error('系统异常', [
+                    'error' => $e,
+                    'message' => $e->getMessage(),
+                    'request' => $request->all(),
+                    'path' => $request->path(),
+                    'method' => $request->method(),
+                    'ip' => $request->getClientIp(),
+                    'user_agent' => $request->header('User-Agent'),
+                    'headers' => $request->header(),
+                    'full_url' => $request->fullUrl(),
+                ]);
+                Response::fail('系统异常', ResponseCodeEnum::HTTP_INTERNAL_SERVER_ERROR);
+            }
         }
         return parent::render($request, $e);
     }
