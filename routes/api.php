@@ -22,9 +22,11 @@ Route::group(['prefix' => 'webhook', 'as' => 'webhook.'], function () {
     require __DIR__ . '/modules/api/webhook.php';
 });
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+/**
+ * Wechat相关路由
+ */
+Route::group(['prefix' => 'wechat', 'as' => 'wechat.'], function () {
+    require __DIR__ . '/modules/api/wechat.php';
 });
 
 // 小程序端的Protecting-routes
