@@ -43,6 +43,11 @@ class AppServiceProvider extends ServiceProvider
                 // 对%Y和%m进行转义
                 $sql = str_replace('%Y', '%%Y', $sql);
                 $sql = str_replace('%m', '%%m', $sql);
+                foreach ($bindings as $key => $value) {
+                    if ($value instanceof \DateTime) {
+                        $bindings[$key] = $value->format('Y-m-d H:i:s');
+                    }
+                }
                 $fullSql = vsprintf($sql, $bindings);
                 \Log::debug('SQL', ['sql' => $fullSql, 'time' => $time]);
             });
