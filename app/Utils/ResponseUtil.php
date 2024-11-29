@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Utils;
 
 class ResponseUtil
 {
@@ -10,9 +10,9 @@ class ResponseUtil
      * @param $total
      * @param $perPage
      * @param array $extra
-     * @return array
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\JsonResource
      */
-    public static function paginationResponse($items, $total, $perPage, array $extra = []): array
+    public static function paginationResponse($items, $total, $perPage, array $extra = [])
     {
         $result = [
             'items' => $items,
@@ -22,6 +22,6 @@ class ResponseUtil
         if ($extra) {
             $result['extra'] = $extra;
         }
-        return $result;
+        return \Response::success($result);
     }
 }
