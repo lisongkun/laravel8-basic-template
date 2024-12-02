@@ -22,6 +22,15 @@ class PaginationRequest extends FormRequest
         ];
     }
 
+    public function validated()
+    {
+        $data = parent::validated();
+        if(!array_key_exists('queryParams', $data)) {
+            $data['queryParams'] = '{}';
+        }
+        return $data;
+    }
+
     public function messages()
     {
         return [

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Enums\ResponseCodeEnum;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Log;
@@ -54,7 +55,9 @@ class Handler extends ExceptionHandler
             $firstErrorMessage = array_values($e->errors())[0][0];
             Response::fail($firstErrorMessage, ResponseCodeEnum::HTTP_BAD_REQUEST);
         }
-        if(!config('app.debug')){
+        if ($e instanceof ModelNotFoundException)
+            Response::fail('数据不存在', ResponseCodeEnum::HTTP_NOT_FOUND);
+        if (!config('app.debug')) {
             if ($e instanceof UnauthorizedHttpException)
                 Response::fail('您的会话已过期,请重新登陆', ResponseCodeEnum::HTTP_UNAUTHORIZED);
             else if ($e instanceof HttpResponseException)
@@ -75,7 +78,19 @@ class Handler extends ExceptionHandler
                 ]);
                 Response::fail('系统异常', ResponseCodeEnum::HTTP_INTERNAL_SERVER_ERROR);
             }
+        } else {
+            Log::error('系统异常', [
+                'error' => $e,
+                'message' => $e->getMessage(),
+                'request' => $request->all(),
+                'path' => $request->path(),
+                'method' => $request->method(),
+                'ip' => $request->getClientIp(),
+                'user_agent' => $request->header('User-Agent'),
+                'headers' => $request->header(),
+                'full_url' => $request->fullUrl(),
+            ]);
+            return parent::render($request, $e);
         }
-        return parent::render($request, $e);
     }
 }
