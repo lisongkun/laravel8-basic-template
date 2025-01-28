@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\EnableCrossRequestMiddleware;
+use App\Http\Middleware\RecordRequestMessageMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -23,7 +24,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         // 解决跨域中间件
-        EnableCrossRequestMiddleware::class
+        EnableCrossRequestMiddleware::class,
+        RecordRequestMessageMiddleware::class
     ];
 
     /**
