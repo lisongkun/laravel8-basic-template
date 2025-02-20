@@ -25,7 +25,8 @@
         "orangehill/iseed": "^3.0",
         "overtrue/laravel-wechat": "7.0",
         "paquettg/php-html-parser": "^2.2",
-        "zhuzhichao/ip-location-zh": "^2.4"
+        "zhuzhichao/ip-location-zh": "^2.4",
+        "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
